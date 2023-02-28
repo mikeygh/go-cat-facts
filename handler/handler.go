@@ -5,17 +5,18 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
-	"gitlab.com/idoko/bucketeer/db"
 )
 
-var dbInstance db.Database
+//var dbInstance db.Database
 
-func NewHandler(db db.Database) http.Handler {
+// func NewHandler(db db.Database) http.Handler {
+func NewHandler() http.Handler {
+
 	router := chi.NewRouter()
-	dbInstance = db
+	//dbInstance = db
 	router.MethodNotAllowed(methodNotAllowedHandler)
 	router.NotFound(notFoundHandler)
-	router.Route("/items", items)
+	router.Route("/facts", facts)
 	return router
 }
 func methodNotAllowedHandler(w http.ResponseWriter, r *http.Request) {
